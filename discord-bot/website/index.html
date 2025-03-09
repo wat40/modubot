@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuBot - Modular Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#commands">Commands</a></li>
+                    <li><a href="#setup">Setup</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="economy.html">Economy</a></li>
+                    <li><a href="dashboard.html" class="dashboard-btn">Dashboard</a></li>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com%2Foauth2%2Fauthorize%3Fclient_id%3D1348106326131081216&integration_type=0&scope=bot+applications.commands+guilds+identify" class="invite-btn">Invite Bot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-fade-in">ModuBot</h1>
+                <p class="subtitle animate-fade-in">A powerful, modular Discord bot built for server management and engagement</p>
+                <div class="hero-buttons animate-fade-in">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com%2Foauth2%2Fauthorize%3Fclient_id%3D1348106326131081216&integration_type=0&scope=bot+applications.commands+guilds+identify" class="btn btn-primary">Add to Discord</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image animate-slide-in">
+                <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348133399893639230/Screenshot_2025-03-08_212000.png?ex=67ce5a91&is=67cd0911&hm=5c3db1ad09a6e769816ea73cb05ef8ebef8c6d17c0be38313e6e1015b5976db2&" alt="ModuBot in action">
+            </div>
+        </div>
+        <div class="wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#202225" fill-opacity="1" d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,208C672,213,768,171,864,170.7C960,171,1056,213,1152,213.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Moderation</h3>
+                    <p>Auto-delete spam, temporary mutes, strikes system, and detailed moderation logs to keep your server safe.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <h3>Entertainment</h3>
+                    <p>Mini-games like trivia and hangman, meme generator, dice rolling, and 8-ball predictions to keep your members engaged.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Utility</h3>
+                    <p>Server information, polls, reminders, weather updates, and customizable commands for ultimate flexibility.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Customization</h3>
+                    <p>Custom prefix, server-specific settings, and role-based permissions to tailor the bot to your server's needs.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Economy System</h3>
+                    <p>Complete virtual economy with currency, daily rewards, gambling games, leaderboards, and a shop system. <a href="economy.html">Learn more</a>.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>Slash Commands</h3>
+                    <p>Modern Discord slash commands with autocomplete and detailed help, alongside traditional prefix commands.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commands" class="commands">
+        <div class="container">
+            <h2 class="section-title">Popular Commands</h2>
+            <div class="commands-tabs">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="moderation">Moderation</button>
+                    <button class="tab-btn" data-tab="entertainment">Entertainment</button>
+                    <button class="tab-btn" data-tab="utility">Utility</button>
+                    <button class="tab-btn" data-tab="economy">Economy</button>
+                    <button class="tab-btn" data-tab="custom">Custom</button>
+                </div>
+                <div class="tabs-content">
+                    <div class="tab-content active" id="moderation-tab">
+                        <div class="command-list">
+                            <div class="command-item">
+                                <div class="command-name">/mod ban @user [reason] [delete_days]</div>
+                                <div class="command-description">Ban a user from the server with optional reason and message deletion</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/mod kick @user [reason]</div>
+                                <div class="command-description">Kick a user from the server with optional reason</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/mod timeout @user &lt;duration&gt; [reason]</div>
+                                <div class="command-description">Temporarily timeout a user for specified duration</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/mod clear &lt;amount&gt; [user] [contains]</div>
+                                <div class="command-description">Delete a specified number of messages with optional filters</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!strike @user [reason]</div>
+                                <div class="command-description">Give a warning strike to a user</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="entertainment-tab">
+                        <div class="command-list">
+                            <div class="command-item">
+                                <div class="command-name">!trivia [category]</div>
+                                <div class="command-description">Start a trivia game with optional category</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!hangman</div>
+                                <div class="command-description">Start a game of hangman</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!meme</div>
+                                <div class="command-description">Get a random meme from Reddit</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!8ball [question]</div>
+                                <div class="command-description">Ask the magic 8-ball a question</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!roll [dice]</div>
+                                <div class="command-description">Roll dice (e.g., 2d6 for two six-sided dice)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="utility-tab">
+                        <div class="command-list">
+                            <div class="command-item">
+                                <div class="command-name">/serverinfo</div>
+                                <div class="command-description">Display detailed information about the server</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/userinfo [@user]</div>
+                                <div class="command-description">Show information about a user or yourself</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/utility weather [location]</div>
+                                <div class="command-description">Get current weather information for a location</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!poll [duration] [question] [options...]</div>
+                                <div class="command-description">Create a poll with multiple options</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!remind [time] [reminder]</div>
+                                <div class="command-description">Set a reminder for a specific time</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="economy-tab">
+                        <div class="command-list">
+                            <div class="command-item">
+                                <div class="command-name">/economy balance [user]</div>
+                                <div class="command-description">Check your or another user's balance</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/economy daily</div>
+                                <div class="command-description">Claim your daily currency reward</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/economy shop</div>
+                                <div class="command-description">View items available in the shop</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/economy buy &lt;item_id&gt;</div>
+                                <div class="command-description">Purchase an item from the shop</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">/gamble coinflip &lt;amount&gt; &lt;choice&gt;</div>
+                                <div class="command-description">Bet on a coin flip to win double your bet</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="custom-tab">
+                        <div class="command-list">
+                            <div class="command-item">
+                                <div class="command-name">!cc add [name] [response]</div>
+                                <div class="command-description">Create a custom command</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!cc remove [name]</div>
+                                <div class="command-description">Remove a custom command</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!cc edit [name] [new response]</div>
+                                <div class="command-description">Edit an existing custom command</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!cc list</div>
+                                <div class="command-description">List all custom commands for the server</div>
+                            </div>
+                            <div class="command-item">
+                                <div class="command-name">!cc info [name]</div>
+                                <div class="command-description">Get details about a specific custom command</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="setup" class="setup">
+        <div class="container">
+            <h2 class="section-title">Setup Guide</h2>
+            <div class="setup-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Invite the Bot</h3>
+                        <p>Click the "Add to Discord" button and select your server from the dropdown list.</p>
+                        <a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com%2Foauth2%2Fauthorize%3Fclient_id%3D1348106326131081216&integration_type=0&scope=bot+applications.commands+guilds+identify" class="btn btn-primary">Add to Discord</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Set Permissions</h3>
+                        <p>Ensure the bot has the necessary permissions. It's recommended to allow all permissions requested for full functionality.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Configure Settings</h3>
+                        <p>Use the <code>/help</code> command to see all available commands. Set up moderation logs, mute roles, and other server-specific settings.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Customize</h3>
+                        <p>Create custom commands, set a custom prefix, and configure which features you want enabled or disabled.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="setup-note">
+                <p>Need help with setup? Join our <a href="https://discord.gg/QASGbsuFx9">support server</a> for assistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is ModuBot free to use?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, ModuBot is completely free to use with all features available to everyone. There are no premium tiers or paywalls.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I customize the bot's prefix?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can set a custom prefix for your server using the <code>!setprefix</code> command. For example, <code>!setprefix ?</code> would change the prefix to <code>?</code>.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I set up auto-moderation?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Use the moderation commands to set up auto-moderation. You can configure banned words, anti-spam protection, and auto-muting with various commands. Check <code>!help moderation</code> for details.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does the economy system work?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ModuBot has a comprehensive economy system where users can earn daily rewards, gamble with games like coinflip and slots, purchase items from the shop, and more. Check out the <a href="economy.html">Economy Guide</a> for all the details.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I host this bot myself?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, ModuBot is open-source and can be self-hosted. You can find the source code on <a href="https://github.com/yourusername/modubot">GitHub</a> along with setup instructions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What permissions does the bot need?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For full functionality, ModuBot needs permissions to read and send messages, manage messages and channels, kick and ban members, and manage roles. Some features will work with fewer permissions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Links</h3>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#commands">Commands</a></li>
+                            <li><a href="#setup">Setup</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="https://github.com/wat40/modubot">GitHub</a></li>
+                            <li><a href="https://discord.gg/QASGbsuFx9">Support Server</a></li>
+                            <li><a href="economy.html">Economy Guide</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <ul class="social-links">
+                            <li><a href="https://discord.gg/QASGbsuFx9"><i class="fab fa-discord"></i> Discord</a></li>
+                            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-patreon"></i> Support Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ModuBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 

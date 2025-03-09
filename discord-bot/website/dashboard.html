@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuBot Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background-color: #2c2f33;
+            color: white;
+            padding: 20px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar li {
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        
+        .sidebar li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .sidebar li a:hover {
+            color: #7289da;
+        }
+        
+        .content {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            margin-top: 0;
+            color: #7289da;
+        }
+        
+        .command-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .command-list {
+            margin-top: 20px;
+        }
+        
+        .command-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .command-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #7289da;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .chart-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .login-prompt {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 100px auto;
+            max-width: 500px;
+        }
+        
+        .discord-btn {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .discord-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .dashboard-btn {
+            background-color: #7289da;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .server-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .server-icon-fallback {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #7289da;
+            color: white;
+            font-size: 12px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#commands">Commands</a></li>
+                    <li><a href="economy.html">Economy</a></li>
+                    <li><a href="dashboard.html" class="dashboard-btn active">Dashboard</a></li>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com%2Foauth2%2Fauthorize%3Fclient_id%3D1348106326131081216&integration_type=0&scope=bot+guilds+identify+applications.commands" class="invite-btn">Invite Bot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="login-section" class="login-prompt">
+        <h2>Welcome to the ModuBot Dashboard</h2>
+        <p>Please login with your Discord account to manage your bot settings and commands.</p>
+        <button class="discord-btn" onclick="loginWithDiscord()">
+            <img src="images/discord-logo.png" alt="Discord Logo">
+            Login with Discord
+        </button>
+    </div>
+
+    <div id="dashboard-section" class="dashboard-container" style="display: none;">
+        <div class="sidebar">
+            <h3>Dashboard</h3>
+            <ul>
+                <li><a href="#" onclick="showTab('overview')">Overview</a></li>
+                <li><a href="#" onclick="showTab('commands')">Slash Commands</a></li>
+                <li><a href="#" onclick="showTab('economy')">Economy Settings</a></li>
+                <li><a href="#" onclick="showTab('logs')">Logs</a></li>
+                <li><a href="#" onclick="showTab('settings')">Bot Settings</a></li>
+                <li><a href="inventory.html">Your Inventory</a></li>
+            </ul>
+            <div style="margin-top: 30px;">
+                <h3>Your Servers</h3>
+                <ul id="server-list">
+                    <!-- Server list will be populated dynamically -->
+                    <li><a href="#" onclick="selectServer('server1')">Loading servers...</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div id="overview-tab">
+                <h2>Server Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Member Count</h3>
+                        <p class="stat-value">253</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Commands Used</h3>
+                        <p class="stat-value">1,528</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Economy Activity</h3>
+                        <p class="stat-value">High</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Most Used Command</h3>
+                        <p class="stat-value">/serverinfo</p>
+                    </div>
+                </div>
+                
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Command Usage</h3>
+                        <canvas id="commandUsageChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Member Activity</h3>
+                        <canvas id="memberActivityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="commands-tab" style="display: none;">
+                <h2>Slash Commands Management</h2>
+                <div class="command-section">
+                    <h3>Manage Slash Commands</h3>
+                    <p>Enable or disable slash commands for your server.</p>
+                    
+                    <div class="command-list">
+                        <div class="command-item">
+                            <div>
+                                <strong>/ban</strong>
+                                <p>Ban a user from the server with optional message deletion period</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/kick</strong>
+                                <p>Kick a user from the server</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/timeout</strong>
+                                <p>Timeout a user for a specified duration</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/clear</strong>
+                                <p>Clear a specified number of messages in the channel</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/economy balance</strong>
+                                <p>Check your or another user's balance</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/economy daily</strong>
+                                <p>Claim your daily currency reward</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/gamble coinflip</strong>
+                                <p>Flip a coin and bet on the outcome</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>/gamble slots</strong>
+                                <p>Play the slot machine</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="margin-top: 20px;">Save Command Settings</button>
+                </div>
+            </div>
+            
+            <div id="economy-tab" style="display: none;">
+                <h2>Economy Settings</h2>
+                <div class="command-section">
+                    <h3>Currency Configuration</h3>
+                    <form id="economy-form">
+                        <div style="margin-bottom: 15px;">
+                            <label for="currency-name">Currency Name</label>
+                            <input type="text" id="currency-name" value="coins" class="form-control">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label for="currency-emoji">Currency Emoji</label>
+                            <input type="text" id="currency-emoji" value="🪙" class="form-control">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label for="starting-balance">Starting Balance</label>
+                            <input type="number" id="starting-balance" value="500" class="form-control">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label for="daily-amount">Daily Reward Amount</label>
+                            <input type="number" id="daily-amount" value="200" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </form>
+                </div>
+                
+                <div class="command-section">
+                    <h3>Shop Items</h3>
+                    <div id="shop-items">
+                        <div class="command-item">
+                            <div>
+                                <strong>VIP Role</strong>
+                                <p>Price: 5000 coins</p>
+                            </div>
+                            <button class="btn btn-sm btn-secondary">Edit</button>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>Nickname Change</strong>
+                                <p>Price: 1000 coins</p>
+                            </div>
+                            <button class="btn btn-sm btn-secondary">Edit</button>
+                        </div>
+                        <div class="command-item">
+                            <div>
+                                <strong>Mystery Lootbox</strong>
+                                <p>Price: 2500 coins</p>
+                            </div>
+                            <button class="btn btn-sm btn-secondary">Edit</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 20px;">Add New Item</button>
+                </div>
+                
+                <div class="command-section">
+                    <h3>Passive Income Items</h3>
+                    <div id="passive-income-items">
+                        <div class="command-item">
+                            <div style="display: flex; align-items: center;">
+                                <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464651057373204/windmill.png" alt="Windmill" style="width: 40px; margin-right: 15px;">
+                                <div>
+                                    <strong>Windmill</strong>
+                                    <p>Price: 7,500 coins • Generates 15 coins/hour</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Buy</button>
+                        </div>
+                        <div class="command-item">
+                            <div style="display: flex; align-items: center;">
+                                <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464650784800888/farm.png" alt="Farm" style="width: 40px; margin-right: 15px;">
+                                <div>
+                                    <strong>Small Farm</strong>
+                                    <p>Price: 15,000 coins • Generates 40 coins/hour</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Buy</button>
+                        </div>
+                        <div class="command-item">
+                            <div style="display: flex; align-items: center;">
+                                <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464650487140382/mine.png" alt="Mine" style="width: 40px; margin-right: 15px;">
+                                <div>
+                                    <strong>Gold Mine</strong>
+                                    <p>Price: 30,000 coins • Generates 100 coins/hour</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Buy</button>
+                        </div>
+                        <div class="command-item">
+                            <div style="display: flex; align-items: center;">
+                                <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464650214551632/factory.png" alt="Factory" style="width: 40px; margin-right: 15px;">
+                                <div>
+                                    <strong>Factory</strong>
+                                    <p>Price: 50,000 coins • Generates 180 coins/hour</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Buy</button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p><strong>Total Passive Income:</strong> <span id="total-passive-income">0</span> coins per hour</p>
+                        <button class="btn btn-success" onclick="collectIncome()">Collect Income</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="logs-tab" style="display: none;">
+                <h2>Bot Logs</h2>
+                <div class="command-section">
+                    <h3>Recent Activity</h3>
+                    <div style="height: 300px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace;">
+                        <p>[2025-03-08 22:01:58] INFO: Economy cog is ready</p>
+                        <p>[2025-03-08 22:02:05] INFO: Command: economy - Group registered</p>
+                        <p>[2025-03-08 22:02:05] INFO: Command: gamble - Group registered</p>
+                        <p>[2025-03-08 22:05:12] INFO: User Techthedev used /economy balance</p>
+                        <p>[2025-03-08 22:07:45] INFO: User Gamergirl23 used /gamble coinflip</p>
+                        <p>[2025-03-08 22:08:30] INFO: User Moderator1 used /ban</p>
+                        <p>[2025-03-08 22:10:15] INFO: User Techthedev used /economy daily</p>
+                        <p>[2025-03-08 22:12:40] INFO: User Gamergirl23 used /gamble slots</p>
+                        <p>[2025-03-08 22:15:22] INFO: User NewUser2025 used /economy balance</p>
+                    </div>
+                </div>
+                
+                <div class="command-section">
+                    <h3>Error Logs</h3>
+                    <div style="height: 200px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace;">
+                        <p style="color: red;">[2025-03-08 22:02:05] ERROR: Failed to sync slash commands: Command 'mod' already registered.</p>
+                        <p style="color: orange;">[2025-03-08 22:05:30] WARNING: Database connection timeout, retrying...</p>
+                        <p style="color: green;">[2025-03-08 22:05:32] SUCCESS: Database connection reestablished</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="settings-tab" style="display: none;">
+                <h2>Bot Settings</h2>
+                <div class="command-section">
+                    <h3>General Configuration</h3>
+                    <form id="bot-settings-form">
+                        <div style="margin-bottom: 15px;">
+                            <label for="prefix">Command Prefix (for old commands)</label>
+                            <input type="text" id="prefix" value="!" class="form-control">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label for="status">Bot Status</label>
+                            <select id="status" class="form-control">
+                                <option value="online">Online</option>
+                                <option value="idle">Idle</option>
+                                <option value="dnd">Do Not Disturb</option>
+                                <option value="invisible">Invisible</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label for="activity">Activity Text</label>
+                            <input type="text" id="activity" value="your server | /help" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </form>
+                </div>
+                
+                <div class="command-section">
+                    <h3>Advanced Settings</h3>
+                    <div style="margin-bottom: 15px;">
+                        <label>Database Connection</label>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 10px; height: 10px; background: green; border-radius: 50%; margin-right: 10px;"></div>
+                            <span>Connected</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="log-channel">Log Channel</label>
+                        <select id="log-channel" class="form-control">
+                            <option value="bot-logs">#bot-logs</option>
+                            <option value="mod-logs">#mod-logs</option>
+                            <option value="general">#general</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-danger">Reset Bot</button>
+                    <button class="btn btn-warning">Sync Slash Commands</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ModuBot</h3>
+                    <p>A powerful Discord bot for your server management and engagement needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="economy.html">Economy</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ModuBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for login success parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const loginSuccess = urlParams.get('login_success');
+        const loginError = urlParams.get('login_error');
+        
+        // Set login state based on URL parameter or localStorage
+        if (loginSuccess === 'true') {
+            localStorage.setItem('discord_logged_in', 'true');
+        }
+        
+        const isLoggedIn = localStorage.getItem('discord_logged_in') === 'true';
+        
+        // Display the appropriate section based on login status
+        if (isLoggedIn) {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard-section').style.display = 'grid';
+            // Load user data and servers
+            loadUserData();
+            loadServerList();
+        } else {
+            document.getElementById('login-section').style.display = 'block';
+            document.getElementById('dashboard-section').style.display = 'none';
+            
+            // Display error message if there was a login error
+            if (loginError) {
+                const errorMessage = document.createElement('div');
+                errorMessage.style.backgroundColor = '#f8d7da';
+                errorMessage.style.color = '#721c24';
+                errorMessage.style.padding = '10px';
+                errorMessage.style.borderRadius = '5px';
+                errorMessage.style.marginTop = '15px';
+                
+                if (loginError === 'invalid_client') {
+                    errorMessage.innerHTML = '<strong>Note:</strong> This is a demo with an invalid client secret. In a real app, you would need to register with Discord and use a valid client ID and secret.';
+                } else {
+                    errorMessage.textContent = 'There was an error logging in. Please try again.';
+                }
+                
+                document.querySelector('.login-prompt').appendChild(errorMessage);
+            }
+        }
+        
+        // Function to handle Discord login
+        function loginWithDiscord() {
+            // Redirect to our OAuth login endpoint with explicit host
+            window.location.href = window.location.origin + '/oauth/login';
+        }
+        
+        // Function to load user data from our API
+        function loadUserData() {
+            fetch('/api/user')
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            // Token expired or invalid, clear login state
+                            localStorage.removeItem('discord_logged_in');
+                            window.location.reload();
+                            return;
+                        }
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(userData => {
+                    // Display user information
+                    console.log('User data loaded:', userData);
+                    // You could update the UI with the user's name, avatar, etc.
+                })
+                .catch(error => {
+                    console.error('Error loading user data:', error);
+                });
+        }
+        
+        // Function to load user's servers
+        function loadServerList() {
+            // Try to load from API first
+            fetch('/api/guilds')
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            // Token expired or invalid, clear login state
+                            localStorage.removeItem('discord_logged_in');
+                            window.location.reload();
+                            return;
+                        }
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(guilds => {
+                    // Display user's servers
+                    console.log('Guilds loaded:', guilds);
+                    displayServers(guilds);
+                })
+                .catch(error => {
+                    console.error('Error loading guilds:', error);
+                    // Fall back to mock data if API fails
+                    const mockServers = [
+                        { id: 'server1', name: 'Gaming Community', icon: '🎮' },
+                        { id: 'server2', name: 'Study Group', icon: '📚' },
+                        { id: 'server3', name: 'Developer Hub', icon: '💻' }
+                    ];
+                    displayServers(mockServers);
+                });
+        }
+        
+        // Function to display servers in the UI
+        function displayServers(servers) {
+            const serverListElement = document.getElementById('server-list');
+            serverListElement.innerHTML = '';
+            
+            if (servers.length === 0) {
+                serverListElement.innerHTML = '<li>No servers found where the bot is installed</li>';
+                return;
+            }
+            
+            servers.forEach(server => {
+                const li = document.createElement('li');
+                
+                // Format icon - either use Discord CDN or fallback to emoji
+                let iconHtml = '';
+                if (server.icon) {
+                    // Discord CDN format for guild icons
+                    iconHtml = `<img src="https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png" alt="${server.name}" class="server-icon">`;
+                } else {
+                    // Use first letter of server name as fallback
+                    const firstLetter = server.name.charAt(0).toUpperCase();
+                    iconHtml = `<div class="server-icon-fallback">${firstLetter}</div>`;
+                }
+                
+                li.innerHTML = `<a href="#" onclick="selectServer('${server.id}')">${iconHtml} ${server.name}</a>`;
+                serverListElement.appendChild(li);
+            });
+        }
+        
+        // Function to select a server
+        function selectServer(serverId) {
+            console.log(`Selected server: ${serverId}`);
+            // In a real implementation, load data for the selected server
+            // For now, we'll just highlight the selected item
+            document.querySelectorAll('#server-list li a').forEach(a => {
+                a.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Function to switch between tabs
+        function showTab(tabName) {
+            // Hide all tabs
+            document.getElementById('overview-tab').style.display = 'none';
+            document.getElementById('commands-tab').style.display = 'none';
+            document.getElementById('economy-tab').style.display = 'none';
+            document.getElementById('logs-tab').style.display = 'none';
+            document.getElementById('settings-tab').style.display = 'none';
+            
+            // Show the selected tab
+            document.getElementById(`${tabName}-tab`).style.display = 'block';
+        }
+        
+        // Initialize charts when page loads
+        window.onload = function() {
+            // Command usage chart
+            const commandCtx = document.getElementById('commandUsageChart').getContext('2d');
+            const commandChart = new Chart(commandCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Moderation', 'Economy', 'Utility', 'Fun', 'Music'],
+                    datasets: [{
+                        label: 'Commands Used',
+                        data: [423, 652, 212, 184, 57],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Member activity chart
+            const memberCtx = document.getElementById('memberActivityChart').getContext('2d');
+            const memberChart = new Chart(memberCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    datasets: [{
+                        label: 'Active Members',
+                        data: [120, 135, 142, 138, 152, 178, 164],
+                        fill: true,
+                        backgroundColor: 'rgba(114, 137, 218, 0.2)',
+                        borderColor: 'rgba(114, 137, 218, 1)',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+    <script src="scripts.js"></script>
+    <script>
+        // Function to collect passive income
+        function collectIncome() {
+            // In a real implementation, this would call the bot API
+            // For demonstration, show a success notification
+            const incomeAmount = Math.floor(Math.random() * 500) + 100; // Random amount between 100-600
+            
+            // Create a notification element
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = '#43b581';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.style.transition = 'all 0.3s ease';
+            notification.innerHTML = `<strong>Income Collected!</strong><br>You collected ${incomeAmount} coins from your passive income sources!`;
+            
+            // Add to the page
+            document.body.appendChild(notification);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuBot - Your Inventory</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .inventory-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .inventory-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .inventory-stat {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .inventory-stat h3 {
+            margin: 0;
+            color: #7289da;
+            font-size: 16px;
+        }
+        
+        .inventory-stat p {
+            margin: 10px 0 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            flex: 1;
+            transition: background-color 0.3s;
+        }
+        
+        .tab.active {
+            background-color: #7289da;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .item-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        
+        .item-desc {
+            text-align: center;
+            margin: 0 0 15px;
+            color: #777;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            background-color: #43b581;
+            height: 10px;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .collect-btn {
+            background-color: #43b581;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .collect-btn:hover {
+            background-color: #359469;
+        }
+        
+        .collect-all-btn {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .collect-all-btn:hover {
+            background-color: #5c6ebc;
+        }
+        
+        .achievement-card {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #e6c019;
+        }
+        
+        .achievement-details {
+            flex: 1;
+        }
+        
+        .achievement-name {
+            font-weight: 600;
+            margin: 0 0 5px;
+        }
+        
+        .achievement-desc {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #43b581;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            margin: 100px auto;
+        }
+        
+        .login-btn {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #5c6ebc;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .username {
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .user-id {
+            font-size: 12px;
+            color: #777;
+            margin: 0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #7289da;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .inventory-header {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#commands">Commands</a></li>
+                    <li><a href="/economy">Economy</a></li>
+                    <li><a href="/inventory" class="active">Inventory</a></li>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&scope=bot+guilds+identify+applications.commands" class="invite-btn">Invite Bot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Section (will be hidden after login) -->
+    <div id="login-section" class="login-container" style="display: none;">
+        <h2>Access Your Inventory</h2>
+        <p>Please log in with your Discord account to view your inventory and manage your items.</p>
+        <button class="login-btn" onclick="loginWithDiscord()">
+            <i class="fab fa-discord"></i> Login with Discord
+        </button>
+    </div>
+
+    <!-- Loading Section -->
+    <div id="loading-section" class="loading">
+        <div class="spinner"></div>
+        <p>Loading your inventory...</p>
+    </div>
+
+    <!-- Inventory Section -->
+    <div id="inventory-section" class="inventory-container" style="display: none;">
+        <div class="user-profile" id="user-profile">
+            <!-- User profile will be inserted here -->
+        </div>
+        
+        <h1>Your Inventory</h1>
+        
+        <div class="inventory-header">
+            <div class="inventory-stat">
+                <h3>Balance</h3>
+                <p id="user-balance">0 🪙</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Income Rate</h3>
+                <p id="income-rate">0 🪙/hour</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Total Items</h3>
+                <p id="total-items">0</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Available Income</h3>
+                <p id="available-income">0 🪙</p>
+                <button class="collect-all-btn" onclick="collectAllIncome()">Collect All</button>
+            </div>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('passive-income')">Passive Income</button>
+                <button class="tab" onclick="showTab('roles')">Roles</button>
+                <button class="tab" onclick="showTab('consumables')">Consumables</button>
+                <button class="tab" onclick="showTab('achievements')">Achievements</button>
+            </div>
+            
+            <!-- Passive Income Tab -->
+            <div class="tab-content active" id="passive-income-tab">
+                <div class="items-grid" id="passive-income-items">
+                    <!-- Passive income items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Roles Tab -->
+            <div class="tab-content" id="roles-tab">
+                <div class="items-grid" id="roles-items">
+                    <!-- Roles will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Consumables Tab -->
+            <div class="tab-content" id="consumables-tab">
+                <div class="items-grid" id="consumables-items">
+                    <!-- Consumables will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Achievements Tab -->
+            <div class="tab-content" id="achievements-tab" id="achievements-list">
+                <!-- Achievements will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ModuBot</h3>
+                    <p>A powerful Discord bot for your server management and engagement needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/economy">Economy</a></li>
+                        <li><a href="/inventory">Inventory</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ModuBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // API endpoints
+        const API = {
+            AUTH: {
+                LOGIN: '/api/auth/login',
+                LOGOUT: '/api/auth/logout'
+            },
+            USER: {
+                PROFILE: '/api/user/profile',
+                INVENTORY: '/api/user/inventory',
+                BALANCE: '/api/user/balance',
+                COLLECT: '/api/user/collect'
+            },
+            SHOP: {
+                ITEMS: '/api/shop/items',
+                PURCHASE: '/api/shop/purchase'
+            }
+        };
+        
+        // State variables
+        let userData = null;
+        let userInventory = null;
+        let userBalance = null;
+        let incomeInterval = null;
+        
+        // Check login status and initialize page
+        document.addEventListener('DOMContentLoaded', initPage);
+        
+        function initPage() {
+            // Show loading state
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('inventory-section').style.display = 'none';
+            document.getElementById('loading-section').style.display = 'block';
+            
+            // Check if user is logged in
+            fetchUserProfile()
+                .then(profile => {
+                    userData = profile;
+                    return Promise.all([
+                        fetchUserInventory(),
+                        fetchUserBalance()
+                    ]);
+                })
+                .then(([inventory, balance]) => {
+                    userInventory = inventory;
+                    userBalance = balance;
+                    
+                    // Render the page
+                    renderUserProfile();
+                    renderInventory();
+                    startIncomeTimer();
+                    
+                    // Show inventory section
+                    document.getElementById('loading-section').style.display = 'none';
+                    document.getElementById('inventory-section').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error initializing page:', error);
+                    
+                    // Show login section
+                    document.getElementById('loading-section').style.display = 'none';
+                    document.getElementById('login-section').style.display = 'block';
+                });
+        }
+        
+        function fetchUserProfile() {
+            return fetch(API.USER.PROFILE)
+                .then(response => {
+                    if (response.status === 401) {
+                        throw new Error('Unauthorized');
+                    }
+                    return response.json();
+                });
+        }
+        
+        function fetchUserInventory() {
+            return fetch(API.USER.INVENTORY)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch inventory');
+                    }
+                    return response.json();
+                });
+        }
+        
+        function fetchUserBalance() {
+            return fetch(API.USER.BALANCE)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch balance');
+                    }
+                    return response.json();
+                });
+        }
+        
+        function renderUserProfile() {
+            const profileElement = document.getElementById('user-profile');
+            const avatarUrl = userData.avatar
+                ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`
+                : 'https://cdn.discordapp.com/embed/avatars/0.png';
+            
+            profileElement.innerHTML = `
+                <img src="${avatarUrl}" alt="${userData.username}" class="user-avatar">
+                <div class="user-info">
+                    <p class="username">${userData.username}</p>
+                    <p class="user-id">ID: ${userData.id}</p>
+                </div>
+                <button class="collect-btn" onclick="logout()" style="background-color: #f04747;">Logout</button>
+            `;
+            
+            // Update balance info
+            document.getElementById('user-balance').textContent = `${userBalance.balance.toLocaleString()} 🪙`;
+            document.getElementById('income-rate').textContent = `${userBalance.incomeRate} 🪙/hour`;
+            document.getElementById('available-income').textContent = `${userBalance.availableIncome} 🪙`;
+            
+            // Update total items
+            let totalItems = 0;
+            if (userInventory) {
+                totalItems += userInventory.passiveIncome.reduce((sum, item) => sum + item.count, 0);
+                totalItems += userInventory.roles.length;
+                totalItems += userInventory.consumables.reduce((sum, item) => sum + item.count, 0);
+            }
+            document.getElementById('total-items').textContent = totalItems;
+        }
+        
+        function renderInventory() {
+            // Render passive income items
+            const passiveIncomeContainer = document.getElementById('passive-income-items');
+            passiveIncomeContainer.innerHTML = '';
+            
+            if (userInventory.passiveIncome.length === 0) {
+                passiveIncomeContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 30px;">
+                        <p>You don't have any passive income sources yet.</p>
+                        <button class="collect-btn" onclick="window.location.href='/economy'">Visit Shop</button>
+                    </div>
+                `;
+            } else {
+                userInventory.passiveIncome.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = 'item-card';
+                    itemCard.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.name}" class="item-image">
+                        <h3 class="item-name">${item.name}</h3>
+                        <p class="item-desc">${item.description}</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="${item.id}-progress" data-rate="${item.incomeRate}"></div>
+                        </div>
+                        <button class="collect-btn" onclick="collectIncome('${item.id}', ${item.incomeRate})">Collect</button>
+                    `;
+                    passiveIncomeContainer.appendChild(itemCard);
+                });
+            }
+            
+            // Render roles
+            const rolesContainer = document.getElementById('roles-items');
+            rolesContainer.innerHTML = '';
+            
+            if (userInventory.roles.length === 0) {
+                rolesContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 30px;">
+                        <p>You don't have any roles yet.</p>
+                        <button class="collect-btn" onclick="window.location.href='/economy'">Visit Shop</button>
+                    </div>
+                `;
+            } else {
+                userInventory.roles.forEach(role => {
+                    const roleCard = document.createElement('div');
+                    roleCard.className = 'item-card';
+                    roleCard.innerHTML = `
+                        <img src="${role.imageUrl}" alt="${role.name}" class="item-image">
+                        <h3 class="item-name">${role.name}</h3>
+                        <p class="item-desc">${role.description}</p>
+                        <button class="collect-btn" style="background-color: ${role.equipped ? '#7289da' : '#43b581'};">
+                            ${role.equipped ? 'Equipped' : 'Equip'}
+                        </button>
+                    `;
+                    rolesContainer.appendChild(roleCard);
+                });
+            }
+            
+            // Render consumables
+            const consumablesContainer = document.getElementById('consumables-items');
+            consumablesContainer.innerHTML = '';
+            
+            if (userInventory.consumables.length === 0) {
+                consumablesContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 30px;">
+                        <p>You don't have any consumable items yet.</p>
+                        <button class="collect-btn" onclick="window.location.href='/economy'">Visit Shop</button>
+                    </div>
+                `;
+            } else {
+                userInventory.consumables.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = 'item-card';
+                    itemCard.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.name}" class="item-image">
+                        <h3 class="item-name">${item.name}</h3>
+                        <p class="item-desc">${item.description}</p>
+                        <p>Quantity: ${item.count}</p>
+                        <button class="collect-btn" style="background-color: #e67e22;">Use</button>
+                    `;
+                    consumablesContainer.appendChild(itemCard);
+                });
+            }
+            
+            // Render achievements
+            const achievementsContainer = document.getElementById('achievements-tab');
+            achievementsContainer.innerHTML = '';
+            
+            userInventory.achievements.forEach(achievement => {
+                const achievementCard = document.createElement('div');
+                achievementCard.className = 'achievement-card';
+                
+                if (achievement.unlocked) {
+                    achievementCard.innerHTML = `
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <h3 class="achievement-name">${achievement.name}</h3>
+                            <p class="achievement-desc">${achievement.description}</p>
+                        </div>
+                    `;
+                } else {
+                    achievementCard.innerHTML = `
+                        <div class="achievement-icon" style="color: #aaa;">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <h3 class="achievement-name">${achievement.name}</h3>
+                            <p class="achievement-desc">${achievement.description}</p>
+                        </div>
+                    `;
+                }
+                
+                achievementsContainer.appendChild(achievementCard);
+            });
+        }
+        
+        function startIncomeTimer() {
+            // Clear existing interval if there is one
+            if (incomeInterval) {
+                clearInterval(incomeInterval);
+            }
+            
+            // Calculate time since last collection
+            const lastCollected = new Date(userBalance.lastCollected);
+            const now = new Date();
+            const elapsedHours = (now - lastCollected) / (1000 * 60 * 60);
+            
+            // Update progress bars based on elapsed time
+            updateProgressBars(elapsedHours);
+            
+            // Start the timer to update progress bars
+            incomeInterval = setInterval(() => {
+                // Update progress bars
+                const bars = document.querySelectorAll('.progress-bar');
+                bars.forEach(bar => {
+                    const rate = parseInt(bar.getAttribute('data-rate'));
+                    const currentWidth = parseFloat(bar.style.width || '0');
+                    let newWidth = currentWidth + (100 / 3600); // Progress per second (for hourly rate)
+                    
+                    if (newWidth > 100) {
+                        newWidth = 100;
+                    }
+                    
+                    bar.style.width = `${newWidth}%`;
+                });
+                
+                // Update available income
+                updateAvailableIncome();
+            }, 1000);
+        }
+        
+        function updateProgressBars(elapsedHours) {
+            // Cap elapsed hours at 24 (maximum collection period)
+            const cappedHours = Math.min(elapsedHours, 24);
+            const percentFull = (cappedHours / 24) * 100;
+            
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                bar.style.width = `${percentFull}%`;
+            });
+        }
+        
+        function updateAvailableIncome() {
+            let totalAvailable = 0;
+            
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const rate = parseInt(bar.getAttribute('data-rate'));
+                const width = parseFloat(bar.style.width || '0');
+                totalAvailable += Math.floor(rate * (width / 100));
+            });
+            
+            document.getElementById('available-income').textContent = `${totalAvailable} 🪙`;
+            userBalance.availableIncome = totalAvailable;
+        }
+        
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show the selected tab
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Highlight the selected tab button
+            event.target.classList.add('active');
+        }
+        
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to collect income from a specific source
+        function collectIncome(sourceId, rate) {
+            fetch(API.USER.COLLECT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ source: sourceId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to collect income');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the balance
+                document.getElementById('user-balance').textContent = `${data.newBalance.toLocaleString()} 🪙`;
+                
+                // Reset progress bar
+                const progressBar = document.getElementById(`${sourceId}-progress`);
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                }
+                
+                // Update available income
+                document.getElementById('available-income').textContent = `${data.newAvailableIncome} 🪙`;
+                
+                // Show notification
+                showNotification(`<strong>Income Collected!</strong><br>You collected ${data.collected} coins!`);
+            })
+            .catch(error => {
+                console.error('Error collecting income:', error);
+                showNotification('<strong>Error</strong><br>Failed to collect income. Please try again.');
+            });
+        }
+        
+        // Function to collect all income
+        function collectAllIncome() {
+            fetch(API.USER.COLLECT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ source: 'all' })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to collect income');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the balance
+                document.getElementById('user-balance').textContent = `${data.newBalance.toLocaleString()} 🪙`;
+                
+                // Reset all progress bars
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    bar.style.width = '0%';
+                });
+                
+                // Update available income
+                document.getElementById('available-income').textContent = `${data.newAvailableIncome} 🪙`;
+                
+                // Show notification
+                showNotification(`<strong>All Income Collected!</strong><br>You collected ${data.collected} coins from all sources!`);
+            })
+            .catch(error => {
+                console.error('Error collecting all income:', error);
+                showNotification('<strong>Error</strong><br>Failed to collect income. Please try again.');
+            });
+        }
+        
+        // Function to handle Discord login
+        function loginWithDiscord() {
+            window.location.href = API.AUTH.LOGIN;
+        }
+        
+        // Function to handle logout
+        function logout() {
+            window.location.href = API.AUTH.LOGOUT;
+        }
+        
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    </script>
+</body>
+</html> 

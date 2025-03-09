@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuBot Economy System | ModuBot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .command-section {
+            background-color: var(--gray-light);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .command-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .command-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .command-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .command-example {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #f0ad4e;
+            color: white;
+        }
+        
+        .currency-tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ffeeba;
+            color: #856404;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+        
+        .currency-tag i {
+            margin-right: 5px;
+        }
+        
+        .economy-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#commands">Commands</a></li>
+                    <li><a href="index.html#setup">Setup</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com%2Foauth2%2Fauthorize%3Fclient_id%3D1348106326131081216&integration_type=0&scope=bot+applications.commands+guilds+identify" class="invite-btn">Invite Bot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 class="section-title">ModuBot Economy System</h1>
+            <p class="subtitle" style="text-align: center; margin-bottom: 40px;">
+                A comprehensive virtual economy for your Discord server with currency, gambling, and shopping
+            </p>
+            
+            <div class="economy-stats">
+                <div class="stat-card">
+                    <div class="stat-value">
+                        <i class="fas fa-coins"></i> 500
+                    </div>
+                    <div class="stat-label">Starting Balance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">
+                        <i class="fas fa-calendar-day"></i> 200
+                    </div>
+                    <div class="stat-label">Daily Reward</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">
+                        <i class="fas fa-shopping-cart"></i> 3
+                    </div>
+                    <div class="stat-label">Shop Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">
+                        <i class="fas fa-dice"></i> 2
+                    </div>
+                    <div class="stat-label">Gambling Games</div>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 40px;">Core Economy Commands</h2>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-wallet"></i>
+                    Balance
+                </h3>
+                <p>Check your or another user's current balance.</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Currency</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/economy balance [user]</div>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>user</code> (optional) - The user to check balance for (defaults to yourself)</li>
+                </ul>
+                <p>This command shows the current balance, total earned, and total spent.</p>
+            </div>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-calendar-day"></i>
+                    Daily Reward
+                </h3>
+                <p>Claim your daily currency reward (once every 24 hours).</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Currency</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                    <span class="badge badge-warning">Cooldown: 24h</span>
+                </div>
+                <div class="command-example">/economy daily</div>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Base reward: <span class="currency-tag"><i class="fas fa-coins"></i> 200</span></li>
+                    <li>Streak bonus: +10 per consecutive day (max: +100)</li>
+                    <li>Keeps track of your streak (resets if you miss a day)</li>
+                </ul>
+            </div>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    Give Currency
+                </h3>
+                <p>Give some of your currency to another user.</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Currency</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/economy give @user amount</div>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>user</code> - The user to give money to</li>
+                    <li><code>amount</code> - The amount to give</li>
+                </ul>
+                <p>The recipient will receive a notification when you give them money.</p>
+            </div>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-trophy"></i>
+                    Leaderboard
+                </h3>
+                <p>Display a leaderboard of the richest users in the server.</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Currency</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/economy leaderboard</div>
+                <p>Shows the top 10 wealthiest users in the server, with special formatting for the top 3 positions. If you're not in the top 10, your rank will be shown at the bottom of the leaderboard.</p>
+            </div>
+            
+            <h2 style="margin-top: 40px;">Shop System</h2>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-store"></i>
+                    Shop
+                </h3>
+                <p>View items available for purchase in the shop.</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Shop</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/economy shop</div>
+                <p>Shows all items available in the shop with their prices. Items you can afford will be marked with a ✅.</p>
+                <p><strong>Available Items:</strong></p>
+                <ul>
+                    <li><strong>VIP Status</strong> (5,000 coins) - Exclusive VIP role in the server</li>
+                    <li><strong>Custom Color</strong> (2,000 coins) - Change your name color in the server</li>
+                    <li><strong>Mystery Lootbox</strong> (1,000 coins) - Contains random amount of coins (500-2000)</li>
+                </ul>
+            </div>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    Buy
+                </h3>
+                <p>Purchase an item from the shop using your currency.</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Shop</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/economy buy item_id</div>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>item_id</code> - The ID of the item to buy (e.g., vip, colorchange, lootbox)</li>
+                </ul>
+                <p>Different items have different effects when purchased:</p>
+                <ul>
+                    <li><strong>VIP Status</strong> - Gives you the VIP role in the server</li>
+                    <li><strong>Custom Color</strong> - Prompts you to choose a color for your name</li>
+                    <li><strong>Lootbox</strong> - Instantly rewards you with a random amount of coins</li>
+                </ul>
+            </div>
+            
+            <h2 style="margin-top: 40px;">Gambling Games</h2>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-coins"></i>
+                    Coin Flip
+                </h3>
+                <p>Bet on a coin flip. Double your bet if you win!</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Gambling</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/gamble coinflip amount choice</div>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>amount</code> - The amount to bet</li>
+                    <li><code>choice</code> - Your guess for the coin flip (heads or tails)</li>
+                </ul>
+                <p><strong>Odds:</strong> 50% chance to win<br>
+                <strong>Payout:</strong> 2x your bet</p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                    <div style="text-align: center;">
+                        <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348141750677536879/george-washington-crossing-the-delaware-quarter-heads.png?ex=67ce6258&is=67cd10d8&hm=c0b6fecd0696ed2ef1c090e6be2e255225be085b2b33f77283423a9056061782&" alt="Coin Heads" style="width: 100px; height: 100px; border-radius: 50%;">
+                        <p><strong>Heads</strong></p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348142003677822997/quarter-dollar-us-coin-isolated-on-white.png?ex=67ce6294&is=67cd1114&hm=5ebd750b956fadc22bb7a25638c152455b3727ae2fbcf7253977685cefc4df2e&" alt="Coin Tails" style="width: 100px; height: 100px; border-radius: 50%;">
+                        <p><strong>Tails</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="command-section">
+                <h3 class="command-title">
+                    <i class="fas fa-dice"></i>
+                    Slots
+                </h3>
+                <p>Play the slot machine. Match symbols for different payouts!</p>
+                <div class="badges">
+                    <span class="badge badge-primary">Gambling</span>
+                    <span class="badge badge-secondary">Slash Command</span>
+                </div>
+                <div class="command-example">/gamble slots amount</div>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>amount</code> - The amount to bet</li>
+                </ul>
+                <p><strong>Payouts:</strong></p>
+                <ul>
+                    <li>Three 7️⃣: 50x your bet</li>
+                    <li>Three 💎: 25x your bet</li>
+                    <li>Three 🍓 or 🍉: 10x your bet</li>
+                    <li>Three 🍊 or 🍇: 5x your bet</li>
+                    <li>Three of any other fruit: 3x your bet</li>
+                    <li>Two matching symbols: 1-7x your bet (depends on symbol)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Links</h3>
+                        <ul>
+                            <li><a href="index.html#features">Features</a></li>
+                            <li><a href="index.html#commands">Commands</a></li>
+                            <li><a href="index.html#setup">Setup</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="https://github.com/yourusername/modubot">GitHub</a></li>
+                            <li><a href="https://discord.gg/QASGbsuFx9">Support Server</a></li>
+                            <li><a href="economy.html">Economy Guide</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <ul class="social-links">
+                            <li><a href="https://discord.gg/QASGbsuFx9"><i class="fab fa-discord"></i> Discord</a></li>
+                            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-patreon"></i> Support Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ModuBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 

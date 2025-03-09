@@ -1,0 +1,686 @@
+2025-03-08 20:05:03,804 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 20:05:03,806 - discord.client - INFO - logging in using static token
+2025-03-08 20:09:02,065 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 20:09:02,066 - discord.client - INFO - logging in using static token
+2025-03-08 20:09:02,558 - modubot - INFO - Setting up bot extensions...
+2025-03-08 20:09:05,092 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 20:09:06,285 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 20:09:07,273 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 20:09:08,263 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 20:09:08,276 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 20:09:08,276 - modubot - INFO - All extensions processed
+2025-03-08 20:09:08,686 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 6203796a0beee359e625878243368625).
+2025-03-08 20:09:10,729 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 20:09:40,609 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    response = self.supabase.table('guild_settings').select('*').eq('guild_id', str(guild_id)).execute()
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:09:41,025 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    response = self.supabase.table('guild_settings').select('*').eq('guild_id', str(guild_id)).execute()
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:31:08,179 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:31:08,679 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:35:20,439 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:35:20,867 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:35:49,706 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:35:50,147 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:36:20,847 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:36:21,270 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:36:35,639 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:36:35,977 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:39:13,782 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:39:14,257 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:39:52,729 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:39:53,167 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:40:17,476 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\moderation.py", line 27, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 20:40:17,874 - discord.client - ERROR - Ignoring exception in on_message
+Traceback (most recent call last):
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\discord\client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\turne\Downloads\discord-bot\cogs\custom_commands.py", line 49, in on_message
+    guild_settings = await self.db.get_guild_settings(message.guild.id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\utils\database.py", line 15, in get_guild_settings
+    self.is_connected = False
+               ^^^^^^^^^^^^^^
+  File "C:\Users\turne\AppData\Roaming\Python\Python313\site-packages\postgrest\_sync\request_builder.py", line 68, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.guild_settings" does not exist'}
+2025-03-08 21:27:23,486 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 21:27:24,003 - modubot - INFO - Successfully connected to Supabase
+2025-03-08 21:27:24,003 - discord.client - INFO - logging in using static token
+2025-03-08 21:27:24,508 - modubot - INFO - Setting up database...
+2025-03-08 21:27:25,283 - httpx - INFO - HTTP Request: GET https://fmwxyhrizbkzikxexlxe.supabase.co/rest/v1/guild_settings?select=count "HTTP/2 404 Not Found"
+2025-03-08 21:27:25,285 - modubot - INFO - Creating guild_settings table...
+2025-03-08 21:27:25,286 - modubot - ERROR - Error setting up database: 'SyncClient' object has no attribute 'sql'
+2025-03-08 21:27:25,287 - modubot - INFO - Continuing with limited database functionality...
+2025-03-08 21:27:25,288 - modubot - INFO - Setting up bot extensions...
+2025-03-08 21:27:25,672 - modubot - INFO - Successfully connected to Supabase
+2025-03-08 21:27:25,672 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 21:27:25,676 - modubot - ERROR - Failed to load extension cogs.entertainment: Extension 'cogs.entertainment' raised an error: ModuleNotFoundError: No module named 'requests'
+2025-03-08 21:27:25,707 - modubot - ERROR - Failed to load extension cogs.utility: Extension 'cogs.utility' raised an error: ModuleNotFoundError: No module named 'pytz'
+2025-03-08 21:27:26,061 - modubot - INFO - Successfully connected to Supabase
+2025-03-08 21:27:26,061 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 21:27:26,064 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 21:27:26,072 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-03-08 21:27:26,091 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 21:27:26,102 - modubot - ERROR - Failed to load extension cogs.moderation_slash_commands: Extension 'cogs.moderation_slash_commands' raised an error: NameError: name 'mod_group' is not defined
+2025-03-08 21:27:26,118 - modubot - ERROR - Failed to load extension cogs.economy: Extension 'cogs.economy' raised an error: NameError: name 'economy_group' is not defined
+2025-03-08 21:27:26,118 - modubot - INFO - All extensions processed
+2025-03-08 21:27:26,779 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b59f1cfdbe9752b751bb080a0ca3f188).
+2025-03-08 21:27:28,790 - modubot - INFO - Syncing application commands...
+2025-03-08 21:27:29,105 - modubot - INFO - Synced 2 slash command(s)
+2025-03-08 21:27:29,106 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 21:27:49,867 - httpx - INFO - HTTP Request: GET https://fmwxyhrizbkzikxexlxe.supabase.co/rest/v1/guild_settings?select=count "HTTP/2 404 Not Found"
+2025-03-08 21:27:49,868 - modubot - INFO - Creating guild_settings table...
+2025-03-08 21:27:49,869 - modubot - ERROR - Failed to set up database: 'SyncClient' object has no attribute 'sql'
+2025-03-08 21:27:50,645 - httpx - INFO - HTTP Request: GET https://fmwxyhrizbkzikxexlxe.supabase.co/rest/v1/guild_settings?select=count "HTTP/2 404 Not Found"
+2025-03-08 21:27:50,647 - modubot - INFO - Creating guild_settings table...
+2025-03-08 21:27:50,647 - modubot - ERROR - Failed to set up database: 'SyncClient' object has no attribute 'sql'
+2025-03-08 21:36:53,477 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 21:36:53,478 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:36:53,478 - discord.client - INFO - logging in using static token
+2025-03-08 21:36:53,938 - modubot - INFO - Setting up database...
+2025-03-08 21:36:53,940 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 21:36:53,941 - modubot - INFO - Setting up bot extensions...
+2025-03-08 21:36:53,961 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:36:53,962 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 21:36:53,967 - modubot - ERROR - Failed to load extension cogs.entertainment: Extension 'cogs.entertainment' raised an error: ModuleNotFoundError: No module named 'requests'
+2025-03-08 21:36:53,971 - modubot - ERROR - Failed to load extension cogs.utility: Extension 'cogs.utility' raised an error: ModuleNotFoundError: No module named 'pytz'
+2025-03-08 21:36:53,976 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:36:53,977 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 21:36:53,980 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 21:36:53,983 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-03-08 21:36:53,991 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 21:36:53,996 - modubot - ERROR - Failed to load extension cogs.moderation_slash_commands: Extension 'cogs.moderation_slash_commands' raised an error: NameError: name 'mod_group' is not defined
+2025-03-08 21:36:54,001 - modubot - ERROR - Failed to load extension cogs.economy: Extension 'cogs.economy' raised an error: NameError: name 'economy_group' is not defined
+2025-03-08 21:36:54,001 - modubot - INFO - All extensions processed
+2025-03-08 21:36:54,405 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 701134fbc0e8f74faf9e70932eb3cead).
+2025-03-08 21:36:56,425 - modubot - INFO - Syncing application commands...
+2025-03-08 21:36:56,687 - modubot - INFO - Synced 2 global slash command(s)
+2025-03-08 21:36:56,816 - modubot - INFO - Also synced commands to 1 guilds
+2025-03-08 21:36:56,817 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 21:42:29,100 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 21:42:29,101 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:42:29,101 - discord.client - INFO - logging in using static token
+2025-03-08 21:42:29,874 - modubot - INFO - Setting up database...
+2025-03-08 21:42:29,875 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 21:42:29,875 - modubot - INFO - Setting up bot extensions...
+2025-03-08 21:42:29,892 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:42:29,892 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 21:42:29,902 - modubot - ERROR - Failed to load extension cogs.entertainment: Extension 'cogs.entertainment' raised an error: ModuleNotFoundError: No module named 'requests'
+2025-03-08 21:42:29,910 - modubot - ERROR - Failed to load extension cogs.utility: Extension 'cogs.utility' raised an error: ModuleNotFoundError: No module named 'pytz'
+2025-03-08 21:42:29,917 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:42:29,917 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 21:42:29,923 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 21:42:29,959 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-03-08 21:42:30,001 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 21:42:30,028 - modubot - ERROR - Failed to load extension cogs.moderation_slash_commands: Extension 'cogs.moderation_slash_commands' raised an error: NameError: name 'mod_group' is not defined
+2025-03-08 21:42:30,033 - modubot - ERROR - Failed to load extension cogs.economy: Extension 'cogs.economy' raised an error: NameError: name 'economy_group' is not defined
+2025-03-08 21:42:31,823 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 21:42:31,834 - modubot - INFO - Debug cog loaded
+2025-03-08 21:42:31,835 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 21:42:31,837 - modubot - INFO - All extensions processed
+2025-03-08 21:42:32,210 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: d77559e66279a2d6adaa62e63905a5fb).
+2025-03-08 21:42:34,224 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 21:42:34,228 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 21:42:34,230 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:42:34,231 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:42:34,232 - modubot - INFO - Syncing commands globally...
+2025-03-08 21:42:34,523 - modubot - INFO - Synced 2 global slash command(s)
+2025-03-08 21:42:34,533 - modubot - INFO - Syncing commands to guild Chronicles of Aetheris Server (1348087249442701333)...
+2025-03-08 21:42:34,690 - modubot - INFO - Synced 0 commands to guild Chronicles of Aetheris Server
+2025-03-08 21:42:34,693 - modubot - INFO - Synced commands to 1 guilds
+2025-03-08 21:42:34,701 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 21:53:20,402 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 21:53:20,403 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:53:20,404 - discord.client - INFO - logging in using static token
+2025-03-08 21:53:21,572 - modubot - INFO - Setting up database...
+2025-03-08 21:53:21,583 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 21:53:21,584 - modubot - INFO - Setting up bot extensions...
+2025-03-08 21:53:21,608 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:53:21,614 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 21:53:26,344 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:53:26,345 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 21:53:26,380 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:53:26,381 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 21:53:26,391 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 21:53:26,392 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 21:53:26,397 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 21:53:27,212 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: NameError: name 'utility_group' is not defined
+2025-03-08 21:53:27,218 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 21:53:27,250 - modubot - INFO - Loaded extension cogs.moderation_slash_commands
+2025-03-08 21:53:27,286 - modubot - INFO - Loaded economy slash commands extension
+2025-03-08 21:53:27,287 - modubot - INFO - Loaded extension cogs.economy_slash_commands
+2025-03-08 21:53:30,605 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 21:53:30,612 - modubot - INFO - Debug cog loaded
+2025-03-08 21:53:30,613 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 21:53:30,614 - modubot - INFO - All extensions processed
+2025-03-08 21:53:31,100 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cf4c3cdcd60ece9a256294a453e11336).
+2025-03-08 21:53:33,129 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 21:53:33,131 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 21:53:33,132 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,134 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,135 - modubot - INFO - Command: mod - <class 'discord.app_commands.commands.Group'>
+2025-03-08 21:53:33,136 - modubot - INFO - Command: ban - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,137 - modubot - INFO - Command: kick - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,137 - modubot - INFO - Command: timeout - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,139 - modubot - INFO - Command: clear - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,139 - modubot - INFO - Command: economy - <class 'discord.app_commands.commands.Group'>
+2025-03-08 21:53:33,140 - modubot - INFO - Command: gamble - <class 'discord.app_commands.commands.Group'>
+2025-03-08 21:53:33,141 - modubot - INFO - Command: balance - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,141 - modubot - INFO - Command: daily - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,142 - modubot - INFO - Command: give - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,143 - modubot - INFO - Command: leaderboard - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,143 - modubot - INFO - Command: shop - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,144 - modubot - INFO - Command: buy - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,144 - modubot - INFO - Command: coinflip - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,145 - modubot - INFO - Command: slots - <class 'discord.app_commands.commands.Command'>
+2025-03-08 21:53:33,146 - modubot - ERROR - Failed to sync slash commands: Command 'mod' already registered.
+2025-03-08 21:53:33,147 - modubot - ERROR - Exception details: CommandAlreadyRegistered: Command 'mod' already registered.
+2025-03-08 21:53:33,155 - modubot - ERROR - Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\bot.py", line 102, in on_ready
+    self.tree.add_command(cog.group)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 407, in add_command
+    raise CommandAlreadyRegistered(name, None)
+discord.app_commands.errors.CommandAlreadyRegistered: Command 'mod' already registered.
+
+2025-03-08 21:53:33,158 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 22:01:55,563 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 22:01:55,563 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:01:55,564 - discord.client - INFO - logging in using static token
+2025-03-08 22:01:56,117 - modubot - INFO - Setting up database...
+2025-03-08 22:01:56,118 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 22:01:56,119 - modubot - INFO - Setting up bot extensions...
+2025-03-08 22:01:56,159 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:01:56,164 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 22:01:58,470 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:01:58,474 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 22:01:58,521 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:01:58,523 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 22:01:58,533 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:01:58,535 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 22:01:58,545 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 22:01:58,645 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: NameError: name 'utility_group' is not defined
+2025-03-08 22:01:58,656 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 22:01:58,675 - modubot - INFO - Loaded extension cogs.moderation_slash_commands
+2025-03-08 22:01:58,735 - modubot - INFO - Loaded economy slash commands extension
+2025-03-08 22:01:58,737 - modubot - INFO - Loaded extension cogs.economy_slash_commands
+2025-03-08 22:02:02,494 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 22:02:02,502 - modubot - INFO - Debug cog loaded
+2025-03-08 22:02:02,503 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 22:02:02,504 - modubot - INFO - All extensions processed
+2025-03-08 22:02:03,137 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 28785b70dca38f5bf8faa92f6ef78471).
+2025-03-08 22:02:05,147 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 22:02:05,148 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 22:02:05,148 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,150 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,151 - modubot - INFO - Command: mod - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:02:05,153 - modubot - INFO - Command: ban - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,154 - modubot - INFO - Command: kick - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,156 - modubot - INFO - Command: timeout - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,159 - modubot - INFO - Command: clear - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,160 - modubot - INFO - Command: economy - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:02:05,164 - modubot - INFO - Command: gamble - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:02:05,168 - modubot - INFO - Command: balance - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,170 - modubot - INFO - Command: daily - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,175 - modubot - INFO - Command: give - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,180 - modubot - INFO - Command: leaderboard - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,184 - modubot - INFO - Command: shop - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,186 - modubot - INFO - Command: buy - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,188 - modubot - INFO - Command: coinflip - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,189 - modubot - INFO - Command: slots - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:02:05,197 - modubot - ERROR - Failed to sync slash commands: Command 'mod' already registered.
+2025-03-08 22:02:05,200 - modubot - ERROR - Exception details: CommandAlreadyRegistered: Command 'mod' already registered.
+2025-03-08 22:02:05,219 - modubot - ERROR - Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\bot.py", line 102, in on_ready
+    self.tree.add_command(cog.group)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 407, in add_command
+    raise CommandAlreadyRegistered(name, None)
+discord.app_commands.errors.CommandAlreadyRegistered: Command 'mod' already registered.
+
+2025-03-08 22:02:05,222 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 22:02:39,711 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'debugping' not found
+2025-03-08 22:07:36,448 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 22:07:36,449 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:07:36,450 - discord.client - INFO - logging in using static token
+2025-03-08 22:07:36,951 - modubot - INFO - Setting up database...
+2025-03-08 22:07:36,951 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 22:07:36,951 - modubot - INFO - Setting up bot extensions...
+2025-03-08 22:07:36,968 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:07:36,970 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 22:07:38,874 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:07:38,874 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 22:07:38,918 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:07:38,918 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 22:07:38,926 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:07:38,927 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 22:07:38,933 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 22:07:39,027 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: NameError: name 'utility_group' is not defined
+2025-03-08 22:07:39,032 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 22:07:39,041 - modubot - INFO - Loaded extension cogs.moderation_slash_commands
+2025-03-08 22:07:39,050 - modubot - INFO - Loaded economy slash commands extension
+2025-03-08 22:07:39,051 - modubot - INFO - Loaded extension cogs.economy_slash_commands
+2025-03-08 22:07:40,927 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 22:07:40,934 - modubot - INFO - Debug cog loaded
+2025-03-08 22:07:40,934 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 22:07:40,936 - modubot - INFO - All extensions processed
+2025-03-08 22:07:41,270 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 56c2860b775bc9b15d88ea1625670cdf).
+2025-03-08 22:07:43,281 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 22:07:43,282 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 22:07:43,283 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,283 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,284 - modubot - INFO - Command: mod - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:07:43,284 - modubot - INFO - Command: ban - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,285 - modubot - INFO - Command: kick - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,285 - modubot - INFO - Command: timeout - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,285 - modubot - INFO - Command: clear - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,286 - modubot - INFO - Command: economy - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:07:43,286 - modubot - INFO - Command: gamble - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:07:43,287 - modubot - INFO - Command: balance - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,287 - modubot - INFO - Command: daily - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,288 - modubot - INFO - Command: give - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,288 - modubot - INFO - Command: leaderboard - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,288 - modubot - INFO - Command: shop - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,289 - modubot - INFO - Command: buy - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,289 - modubot - INFO - Command: coinflip - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,289 - modubot - INFO - Command: slots - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:07:43,290 - modubot - INFO - Command group from ModerationSlashCommands already registered, skipping
+2025-03-08 22:07:43,290 - modubot - INFO - Syncing commands globally...
+2025-03-08 22:07:43,671 - modubot - INFO - Synced 17 global slash command(s)
+2025-03-08 22:07:43,672 - modubot - INFO - Syncing commands to guild Chronicles of Aetheris Server (1348087249442701333)...
+2025-03-08 22:07:43,887 - modubot - INFO - Synced 0 commands to guild Chronicles of Aetheris Server
+2025-03-08 22:07:43,893 - modubot - INFO - Synced commands to 1 guilds
+2025-03-08 22:07:43,893 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 22:09:37,264 - discord.app_commands.tree - ERROR - Ignoring exception in command 'shop'
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\cogs\economy_slash_commands.py", line 395, in shop_command
+    await interaction.response.send_message(embed=embed)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\webhook\async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'shop' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-03-08 22:10:29,686 - discord.app_commands.tree - ERROR - Ignoring exception in command 'daily'
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\cogs\economy_slash_commands.py", line 208, in daily_command
+    await interaction.response.send_message(embed=embed)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\webhook\async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'daily' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-03-08 22:10:47,738 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1215, in _get_app_command_options
+    raise CommandSignatureMismatch(command)
+discord.app_commands.errors.CommandSignatureMismatch: The signature for command 'mod' is different from the one provided by Discord. This can happen because either your code is out of date or you have not synced the commands with Discord, causing the mismatch in data. It is recommended to sync the command tree to fix this issue.
+2025-03-08 22:10:47,737 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1215, in _get_app_command_options
+    raise CommandSignatureMismatch(command)
+discord.app_commands.errors.CommandSignatureMismatch: The signature for command 'mod' is different from the one provided by Discord. This can happen because either your code is out of date or you have not synced the commands with Discord, causing the mismatch in data. It is recommended to sync the command tree to fix this issue.
+2025-03-08 22:56:49,473 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 22:56:49,473 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:56:49,474 - discord.client - INFO - logging in using static token
+2025-03-08 22:56:49,954 - modubot - INFO - Setting up database...
+2025-03-08 22:56:49,954 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 22:56:49,954 - modubot - INFO - Setting up bot extensions...
+2025-03-08 22:56:49,966 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:56:49,966 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 22:56:50,948 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:56:50,949 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 22:56:50,964 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:56:50,965 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 22:56:50,969 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 22:56:50,970 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 22:56:50,973 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 22:56:51,029 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: NameError: name 'self' is not defined
+2025-03-08 22:56:51,033 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 22:56:51,042 - modubot - INFO - Loaded extension cogs.moderation_slash_commands
+2025-03-08 22:56:51,074 - modubot - INFO - Loaded economy slash commands extension
+2025-03-08 22:56:51,074 - modubot - INFO - Loaded extension cogs.economy_slash_commands
+2025-03-08 22:56:51,711 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 22:56:51,715 - modubot - INFO - Debug cog loaded
+2025-03-08 22:56:51,715 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 22:56:51,715 - modubot - INFO - All extensions processed
+2025-03-08 22:56:52,144 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5820181bae3a0d174185f501644f4ef4).
+2025-03-08 22:56:54,150 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 22:56:54,151 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 22:56:54,152 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,152 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,153 - modubot - INFO - Command: mod - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:56:54,154 - modubot - INFO - Command: ban - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,154 - modubot - INFO - Command: kick - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,155 - modubot - INFO - Command: timeout - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,156 - modubot - INFO - Command: clear - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,156 - modubot - INFO - Command: economy - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:56:54,156 - modubot - INFO - Command: gamble - <class 'discord.app_commands.commands.Group'>
+2025-03-08 22:56:54,157 - modubot - INFO - Command: balance - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,157 - modubot - INFO - Command: daily - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,157 - modubot - INFO - Command: give - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,158 - modubot - INFO - Command: leaderboard - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,158 - modubot - INFO - Command: shop - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,159 - modubot - INFO - Command: buy - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,159 - modubot - INFO - Command: coinflip - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,159 - modubot - INFO - Command: slots - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,160 - modubot - INFO - Command: collect - <class 'discord.app_commands.commands.Command'>
+2025-03-08 22:56:54,160 - modubot - INFO - Command group from ModerationSlashCommands already registered, skipping
+2025-03-08 22:56:54,160 - modubot - INFO - Syncing commands globally...
+2025-03-08 22:56:54,515 - modubot - INFO - Synced 18 global slash command(s)
+2025-03-08 22:56:54,516 - modubot - INFO - Syncing commands to guild Chronicles of Aetheris Server (1348087249442701333)...
+2025-03-08 22:56:54,671 - modubot - INFO - Synced 0 commands to guild Chronicles of Aetheris Server
+2025-03-08 22:56:54,672 - modubot - INFO - Synced commands to 1 guilds
+2025-03-08 22:56:54,672 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)
+2025-03-08 22:58:49,586 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\turne\Downloads\discord-bot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1215, in _get_app_command_options
+    raise CommandSignatureMismatch(command)
+discord.app_commands.errors.CommandSignatureMismatch: The signature for command 'mod' is different from the one provided by Discord. This can happen because either your code is out of date or you have not synced the commands with Discord, causing the mismatch in data. It is recommended to sync the command tree to fix this issue.
+2025-03-08 23:13:00,281 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-08 23:13:00,282 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 23:13:00,284 - discord.client - INFO - logging in using static token
+2025-03-08 23:13:00,806 - modubot - INFO - Setting up database...
+2025-03-08 23:13:00,807 - modubot - WARNING - Cannot set up database: Not connected to Supabase
+2025-03-08 23:13:00,807 - modubot - INFO - Setting up bot extensions...
+2025-03-08 23:13:00,858 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 23:13:00,859 - modubot - INFO - Loaded extension cogs.moderation
+2025-03-08 23:13:01,881 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 23:13:01,882 - modubot - INFO - Loaded extension cogs.entertainment
+2025-03-08 23:13:01,909 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 23:13:01,909 - modubot - INFO - Loaded extension cogs.utility
+2025-03-08 23:13:01,917 - modubot - WARNING - Supabase credentials not properly configured. Database functionality will be limited.
+2025-03-08 23:13:01,919 - modubot - INFO - Loaded extension cogs.custom_commands
+2025-03-08 23:13:01,923 - modubot - INFO - Loaded extension cogs.error_handler
+2025-03-08 23:13:01,979 - modubot - ERROR - Failed to load extension cogs.slash_commands: Extension 'cogs.slash_commands' raised an error: NameError: name 'self' is not defined
+2025-03-08 23:13:01,984 - modubot - INFO - Loaded extension cogs.guild_slash_commands
+2025-03-08 23:13:02,005 - modubot - ERROR - Failed to load extension cogs.moderation_slash_commands: Extension 'cogs.moderation_slash_commands' raised an error: NameError: name 'mod_group' is not defined
+2025-03-08 23:13:02,013 - modubot - INFO - Loaded economy slash commands extension
+2025-03-08 23:13:02,014 - modubot - INFO - Loaded extension cogs.economy_slash_commands
+2025-03-08 23:13:02,880 - modubot - INFO - Loaded extension utils.database_admin
+2025-03-08 23:13:02,885 - modubot - INFO - Debug cog loaded
+2025-03-08 23:13:02,886 - modubot - INFO - Loaded extension utils.debug
+2025-03-08 23:13:02,887 - modubot - INFO - All extensions processed
+2025-03-08 23:13:03,372 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 57301779dbcf4ee13917513aba255f65).
+2025-03-08 23:13:05,385 - modubot - INFO - Syncing application commands (always sync on startup)...
+2025-03-08 23:13:05,385 - modubot - INFO - Currently registered command groups in tree:
+2025-03-08 23:13:05,386 - modubot - INFO - Command: serverinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,386 - modubot - INFO - Command: userinfo - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,387 - modubot - INFO - Command: economy - <class 'discord.app_commands.commands.Group'>
+2025-03-08 23:13:05,387 - modubot - INFO - Command: gamble - <class 'discord.app_commands.commands.Group'>
+2025-03-08 23:13:05,388 - modubot - INFO - Command: balance - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,388 - modubot - INFO - Command: daily - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,389 - modubot - INFO - Command: give - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,389 - modubot - INFO - Command: leaderboard - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,389 - modubot - INFO - Command: shop - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,390 - modubot - INFO - Command: buy - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,390 - modubot - INFO - Command: coinflip - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,391 - modubot - INFO - Command: slots - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,391 - modubot - INFO - Command: collect - <class 'discord.app_commands.commands.Command'>
+2025-03-08 23:13:05,392 - modubot - INFO - Syncing commands globally...
+2025-03-08 23:13:05,662 - modubot - INFO - Synced 13 global slash command(s)
+2025-03-08 23:13:05,663 - modubot - INFO - Syncing commands to guild Chronicles of Aetheris Server (1348087249442701333)...
+2025-03-08 23:13:05,819 - modubot - INFO - Synced 0 commands to guild Chronicles of Aetheris Server
+2025-03-08 23:13:05,819 - modubot - INFO - Synced commands to 1 guilds
+2025-03-08 23:13:05,820 - modubot - INFO - Logged in as ModuBot#3803 (ID: 1348106326131081216)

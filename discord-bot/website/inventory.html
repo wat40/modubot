@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuBot - Your Inventory</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .inventory-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .inventory-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .inventory-stat {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .inventory-stat h3 {
+            margin: 0;
+            color: #7289da;
+            font-size: 16px;
+        }
+        
+        .inventory-stat p {
+            margin: 10px 0 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            flex: 1;
+            transition: background-color 0.3s;
+        }
+        
+        .tab.active {
+            background-color: #7289da;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .item-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        
+        .item-desc {
+            text-align: center;
+            margin: 0 0 15px;
+            color: #777;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            background-color: #43b581;
+            height: 10px;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .collect-btn {
+            background-color: #43b581;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .collect-btn:hover {
+            background-color: #359469;
+        }
+        
+        .collect-all-btn {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .collect-all-btn:hover {
+            background-color: #5c6ebc;
+        }
+        
+        .achievement-card {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #e6c019;
+        }
+        
+        .achievement-details {
+            flex: 1;
+        }
+        
+        .achievement-name {
+            font-weight: 600;
+            margin: 0 0 5px;
+        }
+        
+        .achievement-desc {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #43b581;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .inventory-header {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348132387867070505/file-MUiJCDbuv8w89LS4KejRMX.png?ex=67ce59a0&is=67cd0820&hm=c5b7aeaea78facc8c3e78e7a6b4e77c2671ecb71c881f041a5e377a9e75306c7&" alt="ModuBot Logo">
+                    <span>ModuBot</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#commands">Commands</a></li>
+                    <li><a href="economy.html">Economy</a></li>
+                    <li><a href="inventory.html" class="active">Inventory</a></li>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1348106326131081216&permissions=8&response_type=code&scope=bot+guilds+identify+applications.commands" class="invite-btn">Invite Bot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="inventory-container">
+        <h1>Your Inventory</h1>
+        
+        <div class="inventory-header">
+            <div class="inventory-stat">
+                <h3>Balance</h3>
+                <p id="user-balance">5,280 🪙</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Income Rate</h3>
+                <p id="income-rate">155 🪙/hour</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Total Items</h3>
+                <p id="total-items">8</p>
+            </div>
+            <div class="inventory-stat">
+                <h3>Available Income</h3>
+                <p id="available-income">342 🪙</p>
+                <button class="collect-all-btn" onclick="collectAllIncome()">Collect All</button>
+            </div>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('passive-income')">Passive Income</button>
+                <button class="tab" onclick="showTab('roles')">Roles</button>
+                <button class="tab" onclick="showTab('consumables')">Consumables</button>
+                <button class="tab" onclick="showTab('achievements')">Achievements</button>
+            </div>
+            
+            <div class="tab-content active" id="passive-income-tab">
+                <div class="items-grid">
+                    <div class="item-card">
+                        <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464651057373204/windmill.png" alt="Windmill" class="item-image">
+                        <h3 class="item-name">Windmill</h3>
+                        <p class="item-desc">Generates 15 coins per hour</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="windmill-progress" data-rate="15"></div>
+                        </div>
+                        <button class="collect-btn" onclick="collectIncome('windmill', 15)">Collect</button>
+                    </div>
+                    
+                    <div class="item-card">
+                        <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464650784800888/farm.png" alt="Small Farm" class="item-image">
+                        <h3 class="item-name">Small Farm</h3>
+                        <p class="item-desc">Generates 40 coins per hour</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="farm-progress" data-rate="40"></div>
+                        </div>
+                        <button class="collect-btn" onclick="collectIncome('farm', 40)">Collect</button>
+                    </div>
+                    
+                    <div class="item-card">
+                        <img src="https://cdn.discordapp.com/attachments/1348088564499480658/1348464650487140382/mine.png" alt="Gold Mine" class="item-image">
+                        <h3 class="item-name">Gold Mine</h3>
+                        <p class="item-desc">Generates 100 coins per hour</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="mine-progress" data-rate="100"></div>
+                        </div>
+                        <button class="collect-btn" onclick="collectIncome('mine', 100)">Collect</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="roles-tab">
+                <div class="items-grid">
+                    <div class="item-card">
+                        <img src="https://cdn.discordapp.com/emojis/855054331787304980.webp?size=96&quality=lossless" alt="VIP Role" class="item-image">
+                        <h3 class="item-name">VIP Role</h3>
+                        <p class="item-desc">Special colored role for your server</p>
+                        <button class="collect-btn" style="background-color: #7289da;">Equipped</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="consumables-tab">
+                <div class="items-grid">
+                    <div class="item-card">
+                        <img src="https://cdn.discordapp.com/emojis/1020679352279158814.webp?size=96&quality=lossless" alt="Mystery Box" class="item-image">
+                        <h3 class="item-name">Mystery Box</h3>
+                        <p class="item-desc">Contains random rewards</p>
+                        <button class="collect-btn" style="background-color: #e67e22;">Open</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="achievements-tab">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="achievement-details">
+                        <h3 class="achievement-name">First Steps</h3>
+                        <p class="achievement-desc">Make your first purchase from the shop</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="achievement-details">
+                        <h3 class="achievement-name">Collector</h3>
+                        <p class="achievement-desc">Own one of each passive income item</p>
+                    </div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="color: #aaa;">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="achievement-details">
+                        <h3 class="achievement-name">Big Spender</h3>
+                        <p class="achievement-desc">Spend a total of 100,000 coins in the shop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ModuBot</h3>
+                    <p>A powerful Discord bot for your server management and engagement needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="economy.html">Economy</a></li>
+                        <li><a href="inventory.html">Inventory</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ModuBot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show the selected tab
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Highlight the selected tab button
+            event.target.classList.add('active');
+        }
+        
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to collect income from a specific source
+        function collectIncome(source, rate) {
+            // In a real implementation, this would call the bot API
+            
+            // Random amount with some variance around the rate
+            const variance = Math.floor(rate * 0.2); // 20% variance
+            const amount = rate + Math.floor(Math.random() * variance * 2) - variance;
+            
+            // Update balance display (this would normally come from the API)
+            const currentBalance = parseInt(document.getElementById('user-balance').innerText.replace(/[^0-9]/g, ''));
+            const newBalance = currentBalance + amount;
+            document.getElementById('user-balance').innerText = `${newBalance.toLocaleString()} 🪙`;
+            
+            // Reset progress bar
+            document.getElementById(`${source}-progress`).style.width = '0%';
+            
+            // Show notification
+            showNotification(`<strong>Income Collected!</strong><br>You collected ${amount} coins from your ${source}!`);
+        }
+        
+        // Function to collect all income
+        function collectAllIncome() {
+            // Get total available income
+            const availableIncome = parseInt(document.getElementById('available-income').innerText.replace(/[^0-9]/g, ''));
+            
+            // Update balance
+            const currentBalance = parseInt(document.getElementById('user-balance').innerText.replace(/[^0-9]/g, ''));
+            const newBalance = currentBalance + availableIncome;
+            document.getElementById('user-balance').innerText = `${newBalance.toLocaleString()} 🪙`;
+            
+            // Reset all progress bars
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                bar.style.width = '0%';
+            });
+            
+            // Reset available income
+            document.getElementById('available-income').innerText = '0 🪙';
+            
+            // Show notification
+            showNotification(`<strong>All Income Collected!</strong><br>You collected ${availableIncome} coins from all sources!`);
+        }
+        
+        // Simulate income generation over time
+        function simulateIncome() {
+            // Update progress bars based on time
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const rate = parseInt(bar.getAttribute('data-rate'));
+                const currentWidth = parseFloat(bar.style.width || '0');
+                let newWidth = currentWidth + (100 / 3600); // Progress per second (for hourly rate)
+                
+                if (newWidth > 100) {
+                    newWidth = 100;
+                }
+                
+                bar.style.width = `${newWidth}%`;
+                
+                // Update available income
+                const fullHours = newWidth / 100;
+                const income = Math.floor(rate * fullHours);
+                
+                // Sum up all income sources
+                let totalAvailable = 0;
+                document.querySelectorAll('.progress-bar').forEach(b => {
+                    const r = parseInt(b.getAttribute('data-rate'));
+                    const w = parseFloat(b.style.width || '0');
+                    totalAvailable += Math.floor(r * (w / 100));
+                });
+                
+                document.getElementById('available-income').innerText = `${totalAvailable} 🪙`;
+            });
+        }
+        
+        // Simulate income generation every second
+        setInterval(simulateIncome, 1000);
+        
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    </script>
+</body>
+</html> 
